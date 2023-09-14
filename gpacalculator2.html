@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> GPA Result</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="gpa2.css">
+	</head>
+<body>
+	<div class="div1gpa2">
+		<div class="div2gpa2">
+			<div id="numboxes" class="div3gpa2">
+			</div><hr>
+            <div class="div4gpa2">
+            <center><button class="tcb">Total Credits: <span id="totalCredits"> 0</span></button></center>
+            </div>
+		</div>
+		
+		<div id="getgpabox">
+		    <div id="insidegetbox">
+			<center>
+			<button id="getgpabutton"> Get Gpa </button> 
+			</center>
+		    </div>
+		</div>
+	</div>
+	<script>
+        var totalCredits;        
+        let inputvalue = localStorage.getItem("newpagesubqty");
+        if(inputvalue>0){
+            generateInputs(inputvalue);
+        }
+        else{
+            alert("Enter no of Subjects:");
+        }
+        function generateInputs(noofsubjects){
+            var inputHTML='';
+            for (let i = 0; i < noofsubjects; i++) {
+                inputHTML += '<select class="credit" id="credit_' + i + '">';			
+                inputHTML += '<option class="credit" value="0" selected> Credits </option>';
+                inputHTML += '<option class="credit" value="1"> 1 </option>';
+                inputHTML += '<option class="credit" value="1.5"> 1.5 </option>';
+                inputHTML += '<option class="credit" value="2"> 2 </option>';
+                inputHTML += '<option class="credit" value="3"> 3 </option>';
+                inputHTML += '<option class="credit" value="4"> 4 </option>';
+                inputHTML += '<option class="credit" value="5"> 5 </option>';
+                inputHTML += '<option class="credit" value="6"> 6 </option>';
+                inputHTML += '</select>';
+
+                inputHTML += '<select class="grade" id="grade_' + i + '">';
+                inputHTML += '<option class="grade" value="11" selected> Grade </option>';
+                inputHTML += '<option class="grade" value="10"> S </option>';
+                inputHTML += '<option class="grade" value="9"> A </option>';
+                inputHTML += '<option class="grade" value="8"> B </option>';
+                inputHTML += '<option class="grade" value="7"> C </option>';
+                inputHTML += '<option class="grade" value="6"> D </option>';
+                inputHTML += '<option class="grade" value="5"> E </option>';
+                inputHTML += '<option class="grade" value="4"> F </option>';
+                inputHTML += '</select>';
+            }
+            document.getElementById("numboxes").innerHTML = inputHTML;
+            for (let k = 0; k < inputvalue; k++) {
+                const creditSelect = document.getElementById("credit_" + k);
+                creditSelect.addEventListener("change", updateTotalCredits);
+            }
+        }
+        function updateTotalCredits() {
+            totalCredits = 0;
+            for (let j = 0; j < inputvalue; j++) {
+                var creditSelect = document.getElementById("credit_" + j);
+                var creditValue = parseFloat(creditSelect.options[creditSelect.selectedIndex].value);
+
+                if (creditValue !== 0) {
+                    totalCredits += creditValue;
+                }
+            }
+
+            document.getElementById("totalCredits").textContent = totalCredits;
+            
+        }
+
+        document.getElementById("getgpabutton").addEventListener("click", function(){
+            const entercredit = [];
+            const entergrade = [];
+            var creditxgrade = 0;
+            
+            for (let j = 0; j < inputvalue; j++) {
+                var creditselect = document.getElementById("credit_" + j);
+                var creditvalue = creditselect.options[creditselect.selectedIndex].value;
+                var gradeselect = document.getElementById("grade_" + j);
+                var gradevalue = gradeselect.options[gradeselect.selectedIndex].value;
+
+                if (creditvalue !== "0" && gradevalue !== "11") {
+                    entercredit[j] = parseFloat(creditvalue);
+                    entergrade[j] = parseFloat(gradevalue);
+                    creditxgrade += entercredit[j] * entergrade[j];
+                } else {
+                    alert("Invalid inputs");
+                    return;
+                }
+            }
+            var result = creditxgrade / totalCredits;
+            localStorage.setItem("gparesult", result);
+            window.location.assign("file:///C:/Users/Bandhan%20Reddy/Music/MyFullStackProject/lastpagegpa.html");
+        });
+
+		
+	</script>
+	
+</body>
+</html>

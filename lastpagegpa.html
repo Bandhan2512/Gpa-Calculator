@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> result </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="stylesheet" href="gpa3.css">
+	</head>
+	<link rel="stylesheet" href="gpa3.css">
+<body>
+	<div class="div1gpa3">
+		<a href="index.html" class="close2">Home</a>
+		<a href="gpacalculator2.html" class="close">Close</a>
+		<div class="div2gpa3">
+			<div class="div3gpa3">
+				<center>
+					<p class="congrats"> Congratulations </p>
+					<p> Your GPA is:</p>
+					<p id="result3"> </p>
+					<p class="happy"> Happy Learning..! </p>
+				</center>
+			</div>
+		</div>
+		
+	</div>
+	<script>
+		var res = localStorage.getItem("gparesult");
+		document.getElementById("result3").innerHTML = res;
+	</script>
+</body>
+</html>

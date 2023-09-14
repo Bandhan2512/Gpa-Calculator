@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title> GPA Calculator</title>
+		<link rel="stylesheet" href="gpa1.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+	</head>
+<body>
+	<div class="div1gpa">
+		<div class="div2gpa">
+			<div class="insideglass">
+				<center>
+				<h1> Gpa Calculator</h1>
+				<label for="noofsubs" class="inputgpa"><h2> Enter the No.of Subjects or Courses : </h2></label>
+				<input type="number" name="noofsubs" id="inputbox">
+				</center>
+			</div>
+		</div>
+		<div id="calculateblur">
+			<div>
+			<center>
+			<button id="gpacalculatebutton"><b>Calculate </b></button>
+			</center>
+			</div>
+		</div>
+	</div>
+	<script>
+		document.getElementById("gpacalculatebutton").addEventListener("click", function(){
+											var subqty = document.getElementById("inputbox").value;
+											if(!subqty || subqty<=0){
+												alert("Please Enter valid no.of. Subjects");
+												window.location.assign("file:///C:/Users/Bandhan%20Reddy/Music/MyFullStackProject/gpacalculator.html");
+											}
+											else{
+												localStorage.setItem("newpagesubqty",subqty);
+												window.location.assign("file:///C:/Users/Bandhan%20Reddy/Music/MyFullStackProject/gpacalculator2.html");
+											}
+										});
+	</script>
+	
+</body>
+</html>
